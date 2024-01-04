@@ -1,3 +1,4 @@
+<?php
 include("connect.php");
 
 if(isset($_POST["yt0"])){
@@ -21,4 +22,5 @@ $calistirekle = $stmt->execute();
 if ($calistirekle) {
   echo '<script>alert("Bağlantı başarıyla kuruldu. Projemize destek olduğunuz için teşekkür ederiz.");</script>';
 }
+?>
 
