@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = test_input($_POST["name"]);
     $email = test_input($_POST["email"]);
     $habit = test_input($_POST["habit"]);
-
+    echo $name;
     $sql = "INSERT INTO dbo (name, email, habit) VALUES (?, ?, ?)";
     $params = array($name, $email, $habit);
 
