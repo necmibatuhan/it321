@@ -1,31 +1,24 @@
-<?php
-include 'connect.php';
+include("connect.php");
 
-$feedback_message = "";
+if(isset($_POST["yt0"])){
+  $name = $_POST["name"];
+  $mail = $_POST["mail"];
+  $habit = $_POST["habit"];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = test_input($_POST["name"]);
-    $email = test_input($_POST["email"]);
-    $habit = test_input($_POST["habit"]);
-    echo $name;
-    $sql = "INSERT INTO dbo.registration (name, email, habit) VALUES (?, ?, ?)";
-    $params = array($name, $email, $habit);
 
-    $stmt = sqlsrv_query($conn, $sql, $params);
 
-    if ($stmt === false) {
-        die(print_r(sqlsrv_errors(), true));
-        $feedback_message = "Error.";
-    }
 
-    $feedback_message = "Thank you for signing up! Your feedback is important to us.";
+$sql = "INSERT INTO dbo.registration (name, email, habit) VALUES (:name, :mail, :habit)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bindParam(':name', $name);
+$stmt->bindParam(':mail', $mail);
+$stmt->bindParam(':habit', $habit);
+
+
+$calistirekle = $stmt->execute();
 }
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+if ($calistirekle) {
+  echo '<script>alert("Bağlantı başarıyla kuruldu. Projemize destek olduğunuz için teşekkür ederiz.");</script>';
 }
-?>
 
