@@ -1,11 +1,14 @@
+
 <?php
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:it321nba.database.windows.net,1433; Database = registration", "batu", "{Kh56662017924}");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+$serverName = "tr1.azurewebsites.net";
+$connectionOptions = array(
+    "Database" => "registration",
+    "Uid" => "batu",
+    "PWD" => "Kh56662017924"
+);
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 ?>
