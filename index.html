@@ -15,14 +15,14 @@ if ($_POST) {
         $stmt->bindParam(':habit', $habit);
 
         $calistirekle = $stmt->execute();
-
+}
         if ($calistirekle) {
             echo '<script>alert("Bağlantı başarıyla kuruldu. Projemize destek olduğunuz için teşekkür ederiz.");</script>';
         }
-    } catch (PDOException $e) {
+     catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-}
+
 ?>
 
 <!DOCTYPE html>
