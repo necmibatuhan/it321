@@ -8,7 +8,7 @@ if ($_POST) {
 
     $sql = "INSERT INTO dbo.registration (name, email, habit) VALUES (:name, :email, :habit)";
 
-    try {
+    
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $mail);
